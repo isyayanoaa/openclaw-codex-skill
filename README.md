@@ -1,130 +1,145 @@
-# Codex Skill
+<div align="center">
 
-一个用于 OpenClaw 的 Codex CLI 集成 Skill，可以帮助你完成各种编程任务。
+<img src="https://cdn.openai.com/API/docs/images/codex-logo.png" alt="OpenAI Codex" width="80" />
+&nbsp;&nbsp;&nbsp;
+<img src="https://avatars.githubusercontent.com/u/150475366?s=80" alt="OpenClaw" width="80" />
 
-## 什么是 Codex？
+# openclaw-codex-skill
 
-Codex 是 OpenAI 推出的 AI 编程助手，可以通过命令行交互来：
-- 编写新代码
-- 修复 bug
-- 代码审查
-- 添加单元测试
-- 重构代码
-- 解释代码库
+**OpenAI Codex CLI Skill for OpenClaw**
 
-## 安装
+An [OpenClaw](https://openclaw.ai) agent skill that enables full Codex CLI integration — write code, fix bugs, review PRs, and automate engineering tasks from your AI assistant.
 
+[English](#english) · [中文](#中文)
+
+</div>
+
+---
+
+<a name="english"></a>
+
+## 🇬🇧 English
+
+### What is this?
+
+This is an [AgentSkill](https://agentskills.io) for [OpenClaw](https://openclaw.ai) that gives your AI assistant deep knowledge of the [OpenAI Codex CLI](https://developers.openai.com/codex/cli) — including installation, all commands, slash commands, approval modes, AGENTS.md configuration, Skills, MCP, Cloud tasks, and automation workflows.
+
+### Features
+
+- ✅ Full CLI reference (install, auth, models, flags)
+- ✅ Interactive TUI usage and keyboard shortcuts
+- ✅ Non-interactive / scripting mode (`codex exec`)
+- ✅ Approval & sandbox modes
+- ✅ Session resume and fork
+- ✅ Code review workflows (`/review`)
+- ✅ Slash commands quick reference
+- ✅ AGENTS.md configuration
+- ✅ MCP server integration
+- ✅ Cloud task delegation
+- ✅ Skills system
+- ✅ Shell completions
+
+### Installation
+
+**Via ClawHub (recommended):**
 ```bash
-# macOS / Linux
-curl -fsSL https://claude.ai/install.sh | bash -s -- --with-codex
-
-# 或使用 npm
-npm install -g @openai/codex
+clawhub install codex
 ```
 
-首次使用需要登录：
-
+**Manual:**
 ```bash
-codex login
+# Clone into your OpenClaw skills directory
+git clone https://github.com/isyayanoaa/openclaw-codex-skill ~/.openclaw/workspace/skills/codex
 ```
 
-## 使用方法
+### Usage
 
-### 交互模式
+Once installed, OpenClaw will automatically activate this skill when you mention Codex:
 
-启动交互式会话：
+> "用 codex 修复这个 bug"  
+> "let codex review my PR"  
+> "codex exec 帮我写单元测试"
 
-```bash
-codex
+### Requirements
+
+- [OpenClaw](https://openclaw.ai) installed and running
+- [OpenAI Codex CLI](https://developers.openai.com/codex/cli): `npm i -g @openai/codex`
+- ChatGPT Plus / Pro / Business / Edu / Enterprise plan, or OpenAI API key
+
+### Skill Structure
+
+```
+skills/codex/
+├── SKILL.md      # Main skill instructions (loaded by OpenClaw)
+└── README.md     # This file
 ```
 
-指定初始任务：
+---
 
+<a name="中文"></a>
+
+## 🇨🇳 中文
+
+### 这是什么？
+
+这是一个用于 [OpenClaw](https://openclaw.ai) 的 [AgentSkill](https://agentskills.io)，让你的 AI 助手全面掌握 [OpenAI Codex CLI](https://developers.openai.com/codex/cli) 的用法——包括安装配置、所有命令参数、斜杠命令、审批模式、AGENTS.md 配置、Skills 系统、MCP 集成、Cloud 任务委派和自动化工作流。
+
+### 功能覆盖
+
+- ✅ 完整 CLI 参考（安装、认证、模型选择、全局参数）
+- ✅ 交互式 TUI 操作与键盘快捷键
+- ✅ 非交互/脚本模式（`codex exec`）
+- ✅ 审批模式与沙箱策略
+- ✅ 会话恢复与分叉（resume / fork）
+- ✅ 代码审查工作流（`/review`）
+- ✅ 斜杠命令速查表
+- ✅ AGENTS.md 配置说明
+- ✅ MCP Server 集成
+- ✅ Cloud 任务委派
+- ✅ Skills 系统
+- ✅ Shell 自动补全
+
+### 安装方式
+
+**通过 ClawHub（推荐）：**
 ```bash
-codex "解释这个代码库的结构"
+clawhub install codex
 ```
 
-### 非交互模式 (推荐)
-
-直接执行任务并返回结果：
-
+**手动安装：**
 ```bash
-codex exec "写一个快速排序函数"
-codex exec --yes "修复这个 bug"
+git clone https://github.com/isyayanoaa/openclaw-codex-skill ~/.openclaw/workspace/skills/codex
 ```
 
-### 继续之前的会话
+### 使用方法
 
-```bash
-codex resume --last    # 继续最近的任务
-codex resume <session-id>  # 继续指定任务
+安装后，当你在 OpenClaw 中提到 Codex 时，skill 会自动激活：
+
+> "用 codex 修复这个 bug"  
+> "让 codex review 我的 PR"  
+> "codex exec 帮我写单元测试"  
+> "codex 怎么切换模型"
+
+### 环境要求
+
+- 已安装并运行 [OpenClaw](https://openclaw.ai)
+- [OpenAI Codex CLI](https://developers.openai.com/codex/cli)：`npm i -g @openai/codex`
+- ChatGPT Plus / Pro / Business / Edu / Enterprise 或 OpenAI API Key
+
+### 文件结构
+
+```
+skills/codex/
+├── SKILL.md      # Skill 主文件（OpenClaw 自动加载）
+└── README.md     # 本文件
 ```
 
-## 常用场景
+---
 
-### 编写代码
-```bash
-codex exec "用 Python 写一个判断质数的函数"
-```
+<div align="center">
 
-### 修复 Bug
-```bash
-codex exec "修复 user.go 中的 nil pointer panic"
-```
+**文档来源：** [developers.openai.com/codex](https://developers.openai.com/codex) · 更新于 2026-03-05
 
-### 代码审查
-```bash
-codex exec --yes "review uncommitted changes"
-codex /review  # 交互式审查
-```
+Made with ❤️ for [OpenClaw](https://openclaw.ai)
 
-### 添加测试
-```bash
-codex exec "为 auth.go 添加单元测试"
-```
-
-### 解释代码
-```bash
-codex exec "解释 main.go 的逻辑"
-```
-
-### 图像输入
-```bash
-codex -i error.png "解释这个错误"
-codex --image design.jpg "这个设计稿的实现建议"
-```
-
-## 常用参数
-
-| 参数 | 说明 |
-|------|------|
-| `--path <目录>` | 指定工作目录 |
-| `--yes` | 自动批准所有操作 (yolo模式) |
-| `--model <模型>` | 指定模型 |
-| `--cd <目录>` | 切换工作目录 |
-
-## 权限模式
-
-- **Auto (默认)** - 可以读写工作目录文件，访问外部需确认
-- **Read-only** - 只读，不会修改任何文件
-- **Full Access** - 完全访问，包括网络
-
-用 `/permissions` 切换权限模式。
-
-## 在 OpenClaw 中使用
-
-当需要 Codex 帮忙时，直接说：
-- "用 codex 写一个排序函数"
-- "用 codex 修复这个 bug"
-- "让 codex 审查这段代码"
-
-我会自动调用 Codex CLI 来完成任务。
-
-## 模型
-
-- `gpt-5.3-codex` - 默认模型，适合大多数任务
-- `gpt-5.3-codex-spark` - 更快 (需要 ChatGPT Pro 订阅)
-
-## 参考
-
-- [Codex 官方文档](https://developers.openai.com/codex/cli/features)
+</div>
