@@ -42,9 +42,17 @@ proxy
 
 ### 第三步：进入项目目录
 
+用户只需告诉路径后缀，完整路径自动拼接为 `/Users/tal/<用户提供的路径>`。
+
+例如用户说 `"go to projects/myapp"` 或 `"在 work/api 目录"`，则：
+
 ```bash
-cd /path/to/project
+cd /Users/tal/projects/myapp
+# 或
+cd /Users/tal/work/api
 ```
+
+> **规则：** 用户无需写完整路径，只说 `/Users/tal/` 之后的部分即可。
 
 ### 第四步：启动 Codex 并进入 Plan Mode
 
